@@ -16,3 +16,7 @@ h6,
   font-family: var(--font-heading);
   letter-spacing: 0.02em;
 }
+p,
+li {
+  font-family: var(--font-body);
+}
