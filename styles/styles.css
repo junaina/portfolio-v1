@@ -6,7 +6,7 @@
   --border: rgba(255, 255, 255, 0.12);
   --text: rgba(255, 255, 255, 0.92);
   --muted: rgba(255, 255, 255, 0.7);
-  --accent: #a78bfa;
+  --accent: #c5c2ce;
   --page-gradient: linear-gradient(
     135deg,
     rgba(167, 139, 250, 0.05) 0%,
@@ -117,7 +117,6 @@ li {
   box-shadow: var(--focus-ring);
 }
 
-/* Right side: CV + hamburger */
 .topbar-actions {
   display: flex;
   align-items: center;
@@ -146,7 +145,6 @@ li {
   box-shadow: var(--focus-ring);
 }
 
-/* Mobile menu container */
 .mobile-menu {
   border-top: 1px solid var(--border);
   background: rgba(11, 11, 15, 0.92);
@@ -561,7 +559,7 @@ a:focus-visible {
   padding: 16px 28px;
 
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius); /* NOT a pill */
+  border-radius: var(--radius);
   background: rgba(255, 255, 255, 0.04);
   justify-content: center;
 
@@ -948,7 +946,6 @@ section#contact p {
   outline-offset: 3px;
 }
 
-/* Make the first link look like the primary CTA */
 #contact .contact-links .contact-link:first-child {
   background: var(--accent, #c6a36d);
   border-color: transparent;
@@ -978,7 +975,6 @@ section#projects {
   margin: 0 auto;
 }
 
-/* Section heading */
 #projects h2 {
   font-size: clamp(1.8rem, 3vw, 2.4rem);
   font-family: var(--font-heading, "Forum", serif);
@@ -986,7 +982,6 @@ section#projects {
   text-align: center;
 }
 
-/* Grid of cards (your HTML uses: .projects-section.grid) */
 #projects .projects-section {
   margin-top: 1.5rem;
   display: grid;
@@ -1006,7 +1001,6 @@ section#projects {
   }
 }
 
-/* Card shell (only in Projects) */
 #projects .project-card {
   background: var(--surface, rgba(255, 255, 255, 0.06));
   border: 1px solid var(--border, rgba(255, 255, 255, 0.12));
@@ -1018,14 +1012,12 @@ section#projects {
     background 220ms ease;
 }
 
-/* Subtle hover lift */
 #projects .project-card:hover {
   transform: translateY(-4px);
   border-color: rgba(167, 139, 250, 0.35);
   background: rgba(255, 255, 255, 0.07);
 }
 
-/* Image */
 #projects .project-card img {
   width: 100%;
   display: block;
@@ -1036,12 +1028,10 @@ section#projects {
   background: rgba(0, 0, 0, 0.18);
 }
 
-/* If you haven't added image src yet, hide broken placeholders */
 #projects .project-card img[src=""] {
   display: none;
 }
 
-/* Inner layout: keep buttons pinned to bottom */
 #projects .project-card .stack {
   height: 100%;
   display: flex;
@@ -1049,7 +1039,6 @@ section#projects {
   gap: 10px;
 }
 
-/* Padding (since img spans full width) */
 #projects .project-title,
 #projects .description,
 #projects .projects-card-actions {
@@ -1069,7 +1058,6 @@ section#projects {
   line-height: 1.6;
 }
 
-/* Actions row (your HTML uses: .projects-card-actions.row) */
 #projects .projects-card-actions {
   margin-top: auto;
   padding-bottom: 18px;
@@ -1079,13 +1067,12 @@ section#projects {
   align-items: center;
 }
 
-/* Action buttons */
 #projects .projects-card-actions a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 14px;
-  border-radius: 999px;
+  padding: 4px 14px;
+  border-radius: 8px;
   border: 1px solid var(--border, rgba(255, 255, 255, 0.12));
   background: rgba(0, 0, 0, 0.18);
   color: var(--text, rgba(255, 255, 255, 0.92));
@@ -1107,11 +1094,10 @@ section#projects {
   box-shadow: var(--focus-ring, 0 0 0 3px rgba(167, 139, 250, 0.35));
 }
 
-/* Make the first action look “primary” (Live if present, otherwise Repo) */
 #projects .projects-card-actions a:first-child {
   background: var(--accent, #a78bfa);
   border-color: rgba(0, 0, 0, 0.15);
-  color: #0b0b0f;
+  color: #000000;
 }
 
 #projects .projects-card-actions a:first-child:hover {
