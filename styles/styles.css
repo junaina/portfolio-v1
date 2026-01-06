@@ -7,7 +7,11 @@
   --text: rgba(255, 255, 255, 0.92);
   --muted: rgba(255, 255, 255, 0.7);
   --accent: #a78bfa;
-
+  --page-gradient: linear-gradient(
+    135deg,
+    rgba(167, 139, 250, 0.05) 0%,
+    rgba(167, 139, 250, 0.02) 100%
+  );
   --radius: 18px;
   --radius-sm: 12px;
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
@@ -29,7 +33,7 @@ html {
 body {
   margin: 0;
   font-family: var(--font-body);
-  background: var(--bg);
+  background: var(--page-gradient), var(--bg);
   color: var(--text);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -326,13 +330,8 @@ a:focus-visible {
   font-size: clamp(1rem, 2.4vw, 1.15rem);
   letter-spacing: 0.01em;
 }
-/* Add bento grid layout for skills section */
 .skills {
-  background: linear-gradient(
-    135deg,
-    rgba(167, 139, 250, 0.05) 0%,
-    rgba(167, 139, 250, 0.02) 100%
-  );
+  background: var(--page-gradient), var(--bg);
 }
 
 .skills h2 {
@@ -344,7 +343,6 @@ a:focus-visible {
 }
 
 .skills-bento {
-  /* Switch to explicit grid layout for masonry effect with large featured tiles */
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   grid-auto-rows: auto;
@@ -353,7 +351,6 @@ a:focus-visible {
   margin: 0 auto;
 }
 
-/* Make first two skill tiles (Next.js and TypeScript) large featured tiles */
 .skill-tile:nth-child(1),
 .skill-tile:nth-child(2) {
   grid-column: span 2;
@@ -450,14 +447,12 @@ a:focus-visible {
   transform: translateY(0);
 }
 
-/* Responsive adjustments for tablet and below */
 @media (max-width: 1024px) {
   .skills-bento {
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: 14px;
   }
 
-  /* Keep featured tiles at 2x2 but slightly smaller */
   .skill-tile:nth-child(1),
   .skill-tile:nth-child(2) {
     grid-column: span 2;
@@ -483,7 +478,6 @@ a:focus-visible {
     margin-bottom: 40px;
   }
 
-  /* On tablets, reduce featured tile size to 2x1 for better fit */
   .skill-tile:nth-child(1),
   .skill-tile:nth-child(2) {
     grid-column: span 2;
@@ -517,7 +511,6 @@ a:focus-visible {
     margin-bottom: 32px;
   }
 
-  /* On mobile, all tiles are same size for consistency */
   .skill-tile:nth-child(1),
   .skill-tile:nth-child(2) {
     grid-column: span 1;
@@ -545,7 +538,6 @@ a:focus-visible {
   }
 }
 
-/* Smooth transitions and animations */
 .skill-tile {
   --transition-duration: 280ms;
   --easing: cubic-bezier(0.4, 0, 0.2, 1);
@@ -559,7 +551,6 @@ a:focus-visible {
     transition: none !important;
   }
 }
-/* ===== Tier 3 Skills Marquee (squared banner + rounded-square items) ===== */
 .skills-marquee {
   display: flex;
 
@@ -576,7 +567,6 @@ a:focus-visible {
 
   overflow: hidden;
 
-  /* Keep the soft fade (optional). If you hate it, delete these two lines. */
   -webkit-mask-image: linear-gradient(
     to right,
     transparent 0%,
@@ -595,12 +585,12 @@ a:focus-visible {
 
 .skills-marquee .marquee-track {
   display: flex;
-  align-items: center; /* centers items vertically */
+  align-items: center;
   gap: var(--marquee-gap);
   width: max-content;
   margin-inline: auto;
 
-  padding: 10px; /* gives breathing room so it doesn’t look “stuck” */
+  padding: 10px;
   animation: marquee-scroll var(--marquee-speed) linear infinite;
   will-change: transform;
 }
@@ -608,7 +598,6 @@ a:focus-visible {
 .skills-marquee .marquee-item {
   flex: 0 0 auto;
 
-  /* Rounded SQUARE tile (not pill) */
   width: 120px;
   height: 80px;
   border-radius: 16px;
@@ -616,7 +605,6 @@ a:focus-visible {
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(0, 0, 0, 0.22);
 
-  /* Center content in a neat stack */
   display: grid;
   place-items: center;
   gap: 6px;
@@ -632,7 +620,6 @@ a:focus-visible {
   color: rgba(255, 255, 255, 0.9);
 }
 
-/* recolor SVG paths inside marquee only */
 .skills-marquee .marquee-icon * {
   fill: currentColor !important;
   stroke: currentColor !important;
@@ -644,9 +631,6 @@ a:focus-visible {
   color: rgba(255, 255, 255, 0.85);
   white-space: nowrap;
 }
-/* ===== Marquee: mobile responsiveness ===== */
-
-/* Tablet: slightly smaller tiles + tighter spacing */
 @media (max-width: 820px) {
   .skills-marquee {
     padding: 14px 18px;
@@ -673,27 +657,23 @@ a:focus-visible {
   }
 }
 
-/* Mobile: smaller tiles, and switch to swipeable if space is tight */
 @media (max-width: 520px) {
   .skills-marquee {
     padding: 12px 14px;
     scroll-padding-left: 14px;
     scroll-padding-right: 14px;
-    /* On very small screens, a swipe row is more usable than a long animation */
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
 
-    /* remove edge-fade so it doesn't look "cut off" on mobile */
     -webkit-mask-image: none;
     mask-image: none;
 
-    scrollbar-width: none; /* Firefox */
+    scrollbar-width: none;
   }
   .skills-marquee::-webkit-scrollbar {
-    display: none; /* Chrome/Safari/Edge */
+    display: none;
   }
 
-  /* Stop the animation on mobile so users can scroll it naturally */
   .skills-marquee .marquee-track {
     animation: none;
     gap: 10px;
@@ -719,11 +699,6 @@ a:focus-visible {
   }
 }
 
-/* ===========================
-   ABOUT & CONTACT SECTIONS
-   =========================== */
-
-/* Common section padding and layout */
 section#aboutme,
 section#contact {
   padding: 80px 0;
@@ -739,7 +714,6 @@ section#contact .container {
   margin: 0 auto;
 }
 
-/* Section headers */
 section#aboutme h2,
 section#contact h2 {
   font-size: clamp(1.8rem, 3vw, 2.4rem);
@@ -757,7 +731,6 @@ section#contact p {
   line-height: 1.7;
 }
 
-/* ABOUT ME inner layout */
 #aboutme .about-content {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -795,7 +768,6 @@ section#contact p {
   font-size: 0.95rem;
 }
 
-/* CONTACT SECTION */
 #contact .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -841,13 +813,11 @@ section#contact p {
   text-decoration: underline;
 }
 
-/* BUTTONS INSIDE CONTACT */
 #contact .btn {
   margin-top: 1rem;
   text-align: center;
 }
 
-/* Responsive layout */
 @media (max-width: 850px) {
   #aboutme .about-content,
   #contact .contact-grid {
@@ -874,13 +844,13 @@ section#contact p {
 
 #aboutme .aboutme-section {
   display: grid;
-  grid-template-columns: 1fr; /* mobile: stacked */
+  grid-template-columns: 1fr;
   gap: clamp(1.25rem, 4vw, 3rem);
   align-items: center;
 }
 
 #aboutme .aboutme-media {
-  justify-self: center; /* mobile: center image */
+  justify-self: center;
   width: min(420px, 100%);
 }
 
@@ -893,7 +863,7 @@ section#contact p {
 }
 
 #aboutme .aboutme-content {
-  text-align: center; /* mobile: centered text */
+  text-align: center;
 }
 
 #aboutme .aboutme-content h2 {
@@ -907,7 +877,6 @@ section#contact p {
   text-align: left;
 }
 
-/* desktop: 2 columns (image left, text right) */
 @media (min-width: 900px) {
   #aboutme .aboutme-section {
     grid-template-columns: minmax(280px, 420px) 1fr;
@@ -915,13 +884,13 @@ section#contact p {
   }
 
   #aboutme .aboutme-media {
-    justify-self: start; /* desktop: left column */
+    justify-self: start;
     width: 100%;
   }
 
   #aboutme .aboutme-content {
-    text-align: left; /* desktop: left-aligned text */
-    align-items: flex-start; /* works because .aboutme-content has .stack */
+    text-align: left;
+    align-items: flex-start;
   }
 
   #aboutme .aboutme-content p {
@@ -933,7 +902,6 @@ section#contact p {
   width: min(820px, 100%);
   margin-inline: auto;
 
-  /* override .row flex → use grid */
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
@@ -991,10 +959,162 @@ section#contact p {
   background: var(--accent-2, #e0b980);
 }
 
-/* Mobile: stack */
 @media (max-width: 640px) {
   #contact .contact-links {
     grid-template-columns: 1fr;
     padding: 14px;
   }
+}
+section#projects {
+  padding: 80px 0;
+  background: transparent;
+}
+
+#projects .container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Section heading */
+#projects h2 {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-family: var(--font-heading, "Forum", serif);
+  margin: 0;
+  text-align: center;
+}
+
+/* Grid of cards (your HTML uses: .projects-section.grid) */
+#projects .projects-section {
+  margin-top: 1.5rem;
+  display: grid;
+  gap: clamp(1rem, 2.2vw, 1.5rem);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 720px) {
+  #projects .projects-section {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1050px) {
+  #projects .projects-section {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Card shell (only in Projects) */
+#projects .project-card {
+  background: var(--surface, rgba(255, 255, 255, 0.06));
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.12));
+  border-radius: var(--radius, 18px);
+  overflow: hidden;
+  box-shadow: var(--shadow, 0 10px 30px rgba(0, 0, 0, 0.35));
+  transform: translateY(0);
+  transition: transform 220ms ease, border-color 220ms ease,
+    background 220ms ease;
+}
+
+/* Subtle hover lift */
+#projects .project-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(167, 139, 250, 0.35);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/* Image */
+#projects .project-card img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  object-fit: cover;
+  border-bottom: 1px solid var(--border, rgba(255, 255, 255, 0.12));
+  background: rgba(0, 0, 0, 0.18);
+}
+
+/* If you haven't added image src yet, hide broken placeholders */
+#projects .project-card img[src=""] {
+  display: none;
+}
+
+/* Inner layout: keep buttons pinned to bottom */
+#projects .project-card .stack {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Padding (since img spans full width) */
+#projects .project-title,
+#projects .description,
+#projects .projects-card-actions {
+  padding-inline: 18px;
+}
+
+#projects .project-title {
+  margin: 14px 0 0;
+  font-size: 1.1rem;
+  line-height: 1.25;
+  letter-spacing: 0.2px;
+}
+
+#projects .description {
+  margin: 0;
+  color: var(--muted, rgba(255, 255, 255, 0.7));
+  line-height: 1.6;
+}
+
+/* Actions row (your HTML uses: .projects-card-actions.row) */
+#projects .projects-card-actions {
+  margin-top: auto;
+  padding-bottom: 18px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Action buttons */
+#projects .projects-card-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.12));
+  background: rgba(0, 0, 0, 0.18);
+  color: var(--text, rgba(255, 255, 255, 0.92));
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: transform 160ms ease, background 160ms ease,
+    border-color 160ms ease;
+}
+
+#projects .projects-card-actions a:hover {
+  transform: translateY(-1px);
+  background: rgba(0, 0, 0, 0.26);
+  border-color: rgba(167, 139, 250, 0.35);
+}
+
+#projects .projects-card-actions a:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring, 0 0 0 3px rgba(167, 139, 250, 0.35));
+}
+
+/* Make the first action look “primary” (Live if present, otherwise Repo) */
+#projects .projects-card-actions a:first-child {
+  background: var(--accent, #a78bfa);
+  border-color: rgba(0, 0, 0, 0.15);
+  color: #0b0b0f;
+}
+
+#projects .projects-card-actions a:first-child:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.02);
 }
