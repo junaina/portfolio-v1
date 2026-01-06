@@ -559,3 +559,442 @@ a:focus-visible {
     transition: none !important;
   }
 }
+/* ===== Tier 3 Skills Marquee (squared banner + rounded-square items) ===== */
+.skills-marquee {
+  display: flex;
+
+  --marquee-speed: 45s;
+  --marquee-gap: 14px;
+
+  margin-top: 18px;
+  padding: 16px 28px;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius); /* NOT a pill */
+  background: rgba(255, 255, 255, 0.04);
+  justify-content: center;
+
+  overflow: hidden;
+
+  /* Keep the soft fade (optional). If you hate it, delete these two lines. */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+
+.skills-marquee .marquee-track {
+  display: flex;
+  align-items: center; /* centers items vertically */
+  gap: var(--marquee-gap);
+  width: max-content;
+  margin-inline: auto;
+
+  padding: 10px; /* gives breathing room so it doesn’t look “stuck” */
+  animation: marquee-scroll var(--marquee-speed) linear infinite;
+  will-change: transform;
+}
+
+.skills-marquee .marquee-item {
+  flex: 0 0 auto;
+
+  /* Rounded SQUARE tile (not pill) */
+  width: 120px;
+  height: 80px;
+  border-radius: 16px;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.22);
+
+  /* Center content in a neat stack */
+  display: grid;
+  place-items: center;
+  gap: 6px;
+  align-items: center;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.skills-marquee .marquee-icon {
+  width: 34px;
+  height: 34px;
+  display: block;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* recolor SVG paths inside marquee only */
+.skills-marquee .marquee-icon * {
+  fill: currentColor !important;
+  stroke: currentColor !important;
+}
+
+.skills-marquee .marquee-label {
+  font-size: 0.9rem;
+  line-height: 1.1;
+  color: rgba(255, 255, 255, 0.85);
+  white-space: nowrap;
+}
+/* ===== Marquee: mobile responsiveness ===== */
+
+/* Tablet: slightly smaller tiles + tighter spacing */
+@media (max-width: 820px) {
+  .skills-marquee {
+    padding: 14px 18px;
+  }
+
+  .skills-marquee .marquee-track {
+    gap: 12px;
+  }
+
+  .skills-marquee .marquee-item {
+    width: 104px;
+    height: 72px;
+    border-radius: 14px;
+    padding: 10px;
+  }
+
+  .skills-marquee .marquee-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .skills-marquee .marquee-label {
+    font-size: 0.85rem;
+  }
+}
+
+/* Mobile: smaller tiles, and switch to swipeable if space is tight */
+@media (max-width: 520px) {
+  .skills-marquee {
+    padding: 12px 14px;
+    scroll-padding-left: 14px;
+    scroll-padding-right: 14px;
+    /* On very small screens, a swipe row is more usable than a long animation */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    /* remove edge-fade so it doesn't look "cut off" on mobile */
+    -webkit-mask-image: none;
+    mask-image: none;
+
+    scrollbar-width: none; /* Firefox */
+  }
+  .skills-marquee::-webkit-scrollbar {
+    display: none; /* Chrome/Safari/Edge */
+  }
+
+  /* Stop the animation on mobile so users can scroll it naturally */
+  .skills-marquee .marquee-track {
+    animation: none;
+    gap: 10px;
+    padding-left: 14px;
+    padding-right: 14px;
+    padding: 8px 0;
+  }
+
+  .skills-marquee .marquee-item {
+    width: 92px;
+    height: 68px;
+    border-radius: 12px;
+    padding: 9px;
+  }
+
+  .skills-marquee .marquee-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .skills-marquee .marquee-label {
+    font-size: 0.82rem;
+  }
+}
+
+/* ===========================
+   ABOUT & CONTACT SECTIONS
+   =========================== */
+
+/* Common section padding and layout */
+section#aboutme,
+section#contact {
+  padding: 80px 0;
+  background: transparent;
+}
+
+section#aboutme .container,
+section#contact .container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Section headers */
+section#aboutme h2,
+section#contact h2 {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-family: var(--font-heading, "Forum", serif);
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+section#aboutme p,
+section#contact p {
+  color: var(--muted);
+  max-width: 750px;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 1.7;
+}
+
+/* ABOUT ME inner layout */
+#aboutme .about-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  align-items: start;
+  margin-top: 2.5rem;
+}
+
+#aboutme .about-text {
+  background: var(--surface, rgba(255, 255, 255, 0.05));
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.12));
+  border-radius: var(--radius, 18px);
+  padding: 1.8rem;
+  box-shadow: var(--shadow, 0 12px 32px rgba(0, 0, 0, 0.3));
+}
+
+#aboutme .about-text p {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+#aboutme .about-facts {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: var(--surface, rgba(255, 255, 255, 0.05));
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.12));
+  border-radius: var(--radius, 18px);
+  padding: 1.8rem;
+  box-shadow: var(--shadow, 0 12px 32px rgba(0, 0, 0, 0.3));
+}
+
+#aboutme .about-facts span {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* CONTACT SECTION */
+#contact .contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+#contact .contact-card,
+#contact .contact-info {
+  background: var(--surface, rgba(255, 255, 255, 0.05));
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.12));
+  border-radius: var(--radius, 18px);
+  padding: 1.8rem;
+  box-shadow: var(--shadow, 0 12px 32px rgba(0, 0, 0, 0.3));
+}
+
+#contact .contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+#contact .contact-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.4rem;
+}
+
+#contact .contact-label {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+#contact .contact-link {
+  color: var(--accent, #a78bfa);
+  text-decoration: none;
+}
+
+#contact .contact-link:hover {
+  text-decoration: underline;
+}
+
+/* BUTTONS INSIDE CONTACT */
+#contact .btn {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+/* Responsive layout */
+@media (max-width: 850px) {
+  #aboutme .about-content,
+  #contact .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #aboutme .about-text,
+  #aboutme .about-facts,
+  #contact .contact-card,
+  #contact .contact-info {
+    padding: 1.4rem;
+  }
+
+  section#aboutme h2,
+  section#contact h2 {
+    text-align: left;
+  }
+
+  section#aboutme p,
+  section#contact p {
+    text-align: left;
+  }
+}
+
+#aboutme .aboutme-section {
+  display: grid;
+  grid-template-columns: 1fr; /* mobile: stacked */
+  gap: clamp(1.25rem, 4vw, 3rem);
+  align-items: center;
+}
+
+#aboutme .aboutme-media {
+  justify-self: center; /* mobile: center image */
+  width: min(420px, 100%);
+}
+
+#aboutme .aboutme-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 18px;
+  object-fit: cover;
+}
+
+#aboutme .aboutme-content {
+  text-align: center; /* mobile: centered text */
+}
+
+#aboutme .aboutme-content h2 {
+  margin: 0 0 0.75rem;
+  text-align: left;
+}
+
+#aboutme .aboutme-content p {
+  margin: 0;
+  max-width: 60ch;
+  text-align: left;
+}
+
+/* desktop: 2 columns (image left, text right) */
+@media (min-width: 900px) {
+  #aboutme .aboutme-section {
+    grid-template-columns: minmax(280px, 420px) 1fr;
+    column-gap: clamp(2rem, 5vw, 5rem);
+  }
+
+  #aboutme .aboutme-media {
+    justify-self: start; /* desktop: left column */
+    width: 100%;
+  }
+
+  #aboutme .aboutme-content {
+    text-align: left; /* desktop: left-aligned text */
+    align-items: flex-start; /* works because .aboutme-content has .stack */
+  }
+
+  #aboutme .aboutme-content p {
+    max-width: 70ch;
+  }
+}
+
+#contact .contact-links {
+  width: min(820px, 100%);
+  margin-inline: auto;
+
+  /* override .row flex → use grid */
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+
+  padding: 18px;
+  border-radius: var(--radius, 18px);
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.12));
+  background: var(--surface, rgba(255, 255, 255, 0.04));
+  box-shadow: var(--shadow, 0 12px 32px rgba(0, 0, 0, 0.3));
+}
+
+#contact .contact-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  padding: 14px 18px;
+  min-height: 52px;
+
+  border-radius: calc(var(--radius, 18px) - 6px);
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.18));
+  background: rgba(255, 255, 255, 0.03);
+
+  color: var(--text, #f3f4f6);
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  text-decoration: none;
+
+  transition: transform 150ms ease, background 150ms ease,
+    border-color 150ms ease, box-shadow 150ms ease;
+}
+
+#contact .contact-link:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.28);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+  text-decoration: none;
+}
+
+#contact .contact-link:focus-visible {
+  outline: 3px solid var(--focus-ring, rgba(59, 130, 246, 0.45));
+  outline-offset: 3px;
+}
+
+/* Make the first link look like the primary CTA */
+#contact .contact-links .contact-link:first-child {
+  background: var(--accent, #c6a36d);
+  border-color: transparent;
+  color: #0b0b0f;
+}
+
+#contact .contact-links .contact-link:first-child:hover {
+  background: var(--accent-2, #e0b980);
+}
+
+/* Mobile: stack */
+@media (max-width: 640px) {
+  #contact .contact-links {
+    grid-template-columns: 1fr;
+    padding: 14px;
+  }
+}
