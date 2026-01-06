@@ -4,31 +4,218 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nur Junaina</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Forum&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./styles/styles.css" />
   </head>
+
   <body>
     <header class="header" id="header">
       <div class="container topbar-inner">
-        <nav class="nav" id="nav">
-          <a href="#home" id="home-nav" class="home-nav">Home</a>
-          <a href="#aboutme" id="aboutme-nav" class="aboutme-nav">About Me </a>
-          <a href="#skills" id="skills-nav" class="skills-nav">Skills </a>
-          <a href="#projects" id="projects-nav" class="projects-nav"
-            >Projects
-          </a>
-          <a href="#contact" id="contact-nav" class="contact-nav">Contact </a>
+        <nav class="nav desktop-nav" id="desktop-nav">
+          <a href="#home" class="navlink" data-nav="home">Home</a>
+          <a href="#aboutme" class="navlink" data-nav="aboutme">About Me</a>
+          <a href="#skills" class="navlink" data-nav="skills">Skills</a>
+          <a href="#projects" class="navlink" data-nav="projects">Projects</a>
+          <a href="#contact" class="navlink" data-nav="contact">Contact</a>
         </nav>
         <div class="row topbar-actions">
           <a href="./assets/NurJunaina2025.pdf" class="btn btn-outline" download
             >CV</a
           >
+          <button
+            class="hamburger"
+            type="button"
+            aria-controls="mobile-menu"
+            aria-expanded="false"
+            aria-label="Open menu"
+          >
+            Menu
+          </button>
+        </div>
+      </div>
+      <div class="mobile-menu" id="mobile-menu" hidden>
+        <div class="container stack">
+          <nav class="nav mobile-nav" id="mobile-nav">
+            <a href="#home" class="navlink" data-nav="home">Home</a>
+            <a href="#aboutme" class="navlink" data-nav="aboutme">About Me</a>
+            <a href="#skills" class="navlink" data-nav="skills">Skills</a>
+            <a href="#projects" class="navlink" data-nav="projects">Projects</a>
+            <a href="#contact" class="navlink" data-nav="contact">Contact</a>
+          </nav>
+          <a href="./assets/NurJunaina2025.pdf" class="btn btn-outline" download
+            >Download CV</a
+          >
         </div>
       </div>
     </header>
-    <section class="home" id="home"></section>
-    <section class="aboutme" id="aboutme"></section>
-    <section class="skills" id="skills"></section>
-    <section class="projects" id="projects"></section>
-    <section class="contact" id="contact"></section>
+    <main>
+      <section class="home" id="home">
+        <div class="container hero" id="hero">
+          <div class="profile stack">
+            <img src="./assets/nur.png" alt="nur junaina" class="profile_img" />
+            <h1>Nur Junaina</h1>
+            <p class="profile_role muted">Full Stack Developer</p>
+          </div>
+        </div>
+      </section>
+      <section class="skills" id="skills">
+        <!--row like banner with skills (will animate horizontal sliding later w js)-->
+        <div class="container">
+          <h2>Skills</h2>
+          <div class="row skills-row">
+            <div class="stack individual-skill">
+              <img src="" alt="" class="skill-icons" />
+              <p class="skill-description"></p>
+            </div>
+            <div class="stack individual-skill">
+              <img src="" alt="" class="skill-icons" />
+              <p class="skill-description"></p>
+            </div>
+            <div class="stack individual-skill">
+              <img src="" alt="" class="skill-icons" />
+              <p class="skill-description"></p>
+            </div>
+            <div class="stack individual-skill">
+              <img src="" alt="" class="skill-icons" />
+              <p class="skill-description"></p>
+            </div>
+            <div class="stack individual-skill">
+              <img src="" alt="" class="skill-icons" />
+              <p class="skill-description"></p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="projects" id="projects">
+        <div class="container">
+          <h2>Projects</h2>
+          <div class="projects-section grid">
+            <article class="card project-card">
+              <div class="stack">
+                <img src="" alt="" />
+                <h3 class="project-title">Project 1</h3>
+                <p class="description"></p>
+                <div class="projects-card-actions row">
+                  <a
+                    href="https://github.com/junaina"
+                    target="_blank"
+                    rel="noreferrer"
+                    >Live</a
+                  >
+                  <a
+                    href="https://github.com/junaina"
+                    target="_blank"
+                    rel="noreferrer"
+                    >Repo</a
+                  >
+                </div>
+              </div>
+            </article>
+            <article class="card project-card">
+              <div class="stack">
+                <img src="" alt="" />
+                <h3 class="project-title">Project 2</h3>
+                <p class="description"></p>
+                <div class="projects-card-actions row">
+                  <a
+                    href="https://github.com/junaina"
+                    target="_blank"
+                    rel="noreferrer"
+                    >Live</a
+                  >
+                  <a
+                    href="https://github.com/junaina"
+                    target="_blank"
+                    rel="noreferrer"
+                    >Repo</a
+                  >
+                </div>
+              </div>
+            </article>
+            <article class="card project-card">
+              <div class="stack">
+                <img src="" alt="" />
+                <h3 class="project-title">Project 3</h3>
+                <p class="description"></p>
+                <div class="projects-card-actions row">
+                  <a
+                    href="https://github.com/junaina"
+                    target="_blank"
+                    rel="noreferrer"
+                    >Live</a
+                  >
+                  <a
+                    href="https://github.com/junaina"
+                    target="_blank"
+                    rel="noreferrer"
+                    >Repo</a
+                  >
+                </div>
+              </div>
+            </article>
+            <article class="card project-card">
+              <div class="stack">
+                <img src="" alt="" />
+                <h3 class="project-title">Check Out More on GitHub</h3>
+                <p class="description"></p>
+                <div class="projects-card-actions row">
+                  <a
+                    href="https://github.com/junaina"
+                    target="_blank"
+                    rel="noreferrer"
+                    >Live</a
+                  >
+                  <a
+                    href="https://github.com/junaina"
+                    target="_blank"
+                    rel="noreferrer"
+                    >Repo</a
+                  >
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="aboutme" id="aboutme">
+        <!--2 col grid on desktop, vertical stack on mobile-->
+        <div class="container">
+          <div class="aboutme-section grid">
+            <div class="aboutme-media">
+              <img src="./assets/nur.png" alt="secondary profile image" />
+            </div>
+            <div class="aboutme-content stack">
+              <h2>About Me</h2>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum,
+                sequi aspernatur molestiae dolores delectus consequatur
+                dignissimos distinctio necessitatibus aliquid vero sed
+                recusandae alias facilis? Praesentium numquam expedita molestiae
+                accusamus asperiores?
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="contact" id="contact">
+        <div class="container">
+          <div class="row contact-links">
+            <a
+              href="https://www.linkedin.com/in/nur-junaina-23825b1b4"
+              class="contact-link"
+              >Find Me on Linkedin</a
+            >
+            <a href="mailto:junainanur@gmail.com" class="contact-link"
+              >Email Me</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
   </body>
 </html>
