@@ -326,3 +326,236 @@ a:focus-visible {
   font-size: clamp(1rem, 2.4vw, 1.15rem);
   letter-spacing: 0.01em;
 }
+/* Add bento grid layout for skills section */
+.skills {
+  background: linear-gradient(
+    135deg,
+    rgba(167, 139, 250, 0.05) 0%,
+    rgba(167, 139, 250, 0.02) 100%
+  );
+}
+
+.skills h2 {
+  margin: 0 0 48px;
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  line-height: 1.2;
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+.skills-bento {
+  /* Switch to explicit grid layout for masonry effect with large featured tiles */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-auto-rows: auto;
+  gap: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Make first two skill tiles (Next.js and TypeScript) large featured tiles */
+.skill-tile:nth-child(1),
+.skill-tile:nth-child(2) {
+  grid-column: span 2;
+  grid-row: span 2;
+  aspect-ratio: 1;
+}
+
+.skill-tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.03)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-sm);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(8px);
+}
+
+.skill-tile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(167, 139, 250, 0.15),
+    rgba(167, 139, 250, 0) 70%
+  );
+  opacity: 0;
+  transition: opacity 280ms ease;
+  pointer-events: none;
+}
+
+.skill-tile:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 255, 255, 0.05)
+  );
+  border-color: rgba(167, 139, 250, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+
+.skill-tile:hover::before {
+  opacity: 1;
+}
+
+.skill-tile:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 2px rgba(167, 139, 250, 0.5);
+}
+
+.skill-icon {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+  z-index: 2;
+  transition: transform 280ms ease;
+}
+
+.skill-tile:hover .skill-icon {
+  transform: scale(1.08);
+}
+
+.skill-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(11, 11, 15, 0.95), transparent);
+  color: var(--text);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 8px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 3;
+  letter-spacing: 0.01em;
+}
+
+.skill-tile:hover .skill-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive adjustments for tablet and below */
+@media (max-width: 1024px) {
+  .skills-bento {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 14px;
+  }
+
+  /* Keep featured tiles at 2x2 but slightly smaller */
+  .skill-tile:nth-child(1),
+  .skill-tile:nth-child(2) {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .skill-tile {
+    padding: 18px;
+  }
+
+  .skill-icon {
+    width: 55%;
+    height: 55%;
+  }
+}
+
+@media (max-width: 768px) {
+  .skills {
+    padding: 60px 0;
+  }
+
+  .skills h2 {
+    margin-bottom: 40px;
+  }
+
+  /* On tablets, reduce featured tile size to 2x1 for better fit */
+  .skill-tile:nth-child(1),
+  .skill-tile:nth-child(2) {
+    grid-column: span 2;
+    grid-row: span 1;
+    aspect-ratio: 2 / 1;
+  }
+
+  .skills-bento {
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    gap: 12px;
+  }
+
+  .skill-tile {
+    padding: 16px;
+  }
+
+  .skill-icon {
+    width: 50%;
+    height: 50%;
+  }
+
+  .skill-overlay {
+    font-size: 0.7rem;
+    padding: 6px;
+  }
+}
+
+@media (max-width: 520px) {
+  .skills h2 {
+    font-size: 1.8rem;
+    margin-bottom: 32px;
+  }
+
+  /* On mobile, all tiles are same size for consistency */
+  .skill-tile:nth-child(1),
+  .skill-tile:nth-child(2) {
+    grid-column: span 1;
+    grid-row: span 1;
+    aspect-ratio: 1;
+  }
+
+  .skills-bento {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 10px;
+  }
+
+  .skill-tile {
+    padding: 14px;
+  }
+
+  .skill-icon {
+    width: 48%;
+    height: 48%;
+  }
+
+  .skill-overlay {
+    font-size: 0.65rem;
+    padding: 5px;
+  }
+}
+
+/* Smooth transitions and animations */
+.skill-tile {
+  --transition-duration: 280ms;
+  --easing: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-tile,
+  .skill-icon,
+  .skill-overlay,
+  .skill-tile::before {
+    transition: none !important;
+  }
+}
