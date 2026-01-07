@@ -333,6 +333,14 @@ a:focus-visible {
   letter-spacing: 0.01em;
 }
 
+.profile_description {
+  width: 400px;
+  max-width: 60%;
+  margin: 0 auto;
+  line-height: 1.5;
+  text-align: justify;
+}
+
 /*skills: bentos and marquee*/
 .skills {
   background: var(--page-gradient), var(--bg);
@@ -1065,6 +1073,11 @@ section#projects {
   margin: 0;
   color: var(--muted, rgba(255, 255, 255, 0.7));
   line-height: 1.6;
+}
+.description .project_tech_stack {
+  color: #a994ee; /* orange text */
+  font-size: 0.88rem;
+  font-weight: 500;
 }
 
 #projects .projects-card-actions {
