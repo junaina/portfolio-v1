@@ -348,6 +348,7 @@ a:focus-visible {
 
 .skills h2 {
   margin: 0 0 48px;
+  /*min, pref, max*/
   font-size: clamp(1.8rem, 5vw, 2.5rem);
   line-height: 1.2;
   text-align: center;
